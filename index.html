@@ -2,18 +2,58 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Para Paula 🌸</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz Cumpleaños Paula 🌸</title>
+    <style>
+        body { 
+            font-family: 'Arial', sans-serif; 
+            text-align: center; 
+            background-color: #fdf0f5; 
+            padding: 40px; 
+            color: #333;
+        }
+        .carta { 
+            background: white; 
+            padding: 40px; 
+            border-radius: 20px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
+            max-width: 600px; 
+            margin: auto; 
+            line-height: 1.6;
+        }
+        h1 { color: #d63384; }
+        button { 
+            padding: 15px 30px; 
+            font-size: 18px; 
+            cursor: pointer; 
+            background: #d63384; 
+            color: white; 
+            border: none; 
+            border-radius: 50px; 
+            margin-top: 20px;
+            transition: background 0.3s;
+        }
+        button:hover { background: #b02a6c; }
+    </style>
 </head>
 <body>
 
-    <h1>Para Paula 🌸</h1>
-
-    <iframe width="560" height="315" 
-            src="https://www.youtube.com/embed/mHx7wHRLXsw" 
-            frameborder="0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-            allowfullscreen>
-    </iframe>
+    <div class="carta">
+        <h1>¡Feliz Cumpleaños, Paula! 🌸</h1>
+        
+        <!-- TU CARTA VA AQUÍ -->
+        <p>Querida Paula,</p>
+        <p>Hoy es un día muy especial y quería dedicarte estas palabras...</p>
+        <p>[Escribe aquí todo lo que quieras decirle a Paula...]</p>
+        <p>Con todo mi cariño.</p>
+        
+        <!-- Tu archivo local, sin anuncios -->
+        <audio id="musica" src="musica.mp3"></audio>
+        
+        <button onclick="document.getElementById('musica').play()">
+            Dale click para escuchar tu sorpresa 🎶
+        </button>
+    </div>
 
 </body>
 </html>
