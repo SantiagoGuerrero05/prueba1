@@ -1,58 +1,397 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Feliz Cumpleaños Paula 🌸</title>
-    <style>
-        body { 
-            font-family: 'Arial', sans-serif; 
-            text-align: center; 
-            background-color: #fdf0f5; 
-            padding: 40px; 
-            color: #333;
-        }
-        .carta { 
-            background: white; 
-            padding: 40px; 
-            border-radius: 20px; 
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
-            max-width: 600px; 
-            margin: auto; 
-            line-height: 1.6;
-        }
-        h1 { color: #d63384; }
-        button { 
-            padding: 15px 30px; 
-            font-size: 18px; 
-            cursor: pointer; 
-            background: #d63384; 
-            color: white; 
-            border: none; 
-            border-radius: 50px; 
-            margin-top: 20px;
-            transition: background 0.3s;
-        }
-        button:hover { background: #b02a6c; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Para Paula 🌸</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI', sans-serif;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+}
+
+body{
+    height:100vh;
+    height:100dvh;
+    overflow:hidden;
+    background:linear-gradient(135deg,#ffdce8,#fff0d8);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+#flowers{
+    position:fixed;
+    inset:0;
+    pointer-events:none; 
+    z-index: 10;
+}
+
+.flower{
+    position:absolute;
+    top:-50px;
+    animation:fall linear infinite;
+    pointer-events: auto;
+    cursor: pointer;
+    user-select: none;
+}
+
+@keyframes fall{
+    0% { transform: translateY(-100px) rotate(0deg) translateX(0px); }
+    50% { transform: translateY(50vh) rotate(180deg) translateX(25px); }
+    100% { transform: translateY(120vh) rotate(360deg) translateX(-15px); }
+}
+
+.container{
+    text-align:center;
+    z-index:5;
+    transition:opacity 1.2s ease;
+}
+
+.fade-out{
+    opacity:0;
+    pointer-events:none;
+}
+
+.title{
+    color:white;
+    text-shadow:0 2px 10px rgba(0,0,0,.15);
+    margin-bottom:20px;
+}
+
+.note{
+    color:white;
+    margin-top:15px;
+    font-size:1.1rem;
+}
+
+.envelope{
+    width:220px;
+    height:140px;
+    position:relative;
+    margin:auto;
+    cursor:pointer;
+}
+
+.base{
+    position:absolute;
+    inset:0;
+    background:white;
+    border-radius:10px;
+    box-shadow:0 15px 40px rgba(0,0,0,.15);
+}
+
+.flap{
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:#f6c8d8;
+    clip-path:polygon(0 0,100% 0,50% 60%);
+    transform-origin:top;
+    transition:1s;
+}
+
+.envelope.open .flap{
+    transform:rotateX(180deg);
+}
+
+.card{
+    position:fixed;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,30%) scale(.9);
+    opacity:0;
+    width:min(92%,760px);
+    max-height:85vh;
+    max-height:85dvh;
+    overflow:auto;
+    -webkit-overflow-scrolling: touch;
+
+    padding:35px;
+    background:rgba(255,255,255,0.7); 
+    backdrop-filter:blur(15px);
+    -webkit-backdrop-filter:blur(15px);
+    border-radius:24px;
+    
+    border: 6px double #f6c8d8; 
+    box-shadow: 0 20px 50px rgba(0,0,0,0.1), 
+                inset 0 0 20px rgba(246, 200, 216, 0.4);
+
+    line-height:1.8;
+    color:#444;
+    transition:all 1.2s ease;
+    z-index: 15;
+}
+
+.card.show{
+    opacity:1;
+    transform:translate(-50%,-50%) scale(1);
+}
+
+.typewriter{
+    white-space:pre-wrap;
+    border-right:2px solid #666;
+    padding-right:4px;
+    animation: blink 0.8s step-end infinite;
+}
+
+@keyframes blink {
+    50% { border-color: transparent; }
+}
+
+.quote{
+    margin-top:20px;
+    font-style:italic;
+    color:#666;
+}
+
+.pd{
+    margin-top:20px;
+    font-size: 0.9rem;
+}
+
+.memory{
+    margin-top:20px;
+    display:none;
+    background:rgba(255,255,255,0.8);
+    padding:15px;
+    border-radius:15px;
+    border: 1px dashed #f6c8d8;
+}
+
+.actions{
+    margin-top:20px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+button{
+    border:1px solid #f6c8d8;
+    padding:10px 16px;
+    border-radius:20px;
+    cursor:pointer;
+    background:white;
+    box-shadow:0 5px 15px rgba(0,0,0,0.05);
+    transition: all 0.2s ease;
+}
+
+button:active {
+    transform: scale(0.95);
+    background: #f6c8d8;
+    color: white;
+}
+
+.counter{
+    position:fixed;
+    bottom:10px;
+    right:15px;
+    background:rgba(255,255,255,.5);
+    padding:8px 12px;
+    border-radius:15px;
+    font-size:.8rem;
+    z-index: 5;
+}
+
+.ultra-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(255, 220, 232, 0.3);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+    z-index: 100;
+    padding: 20px;
+}
+
+.ultra-modal.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.ultra-card-content {
+    background: white;
+    padding: 30px;
+    border-radius: 25px;
+    max-width: 350px;
+    width: 100%;
+    text-align: center;
+    border: 3px double #f6c8d8;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+    transform: scale(0.8);
+    transition: transform 0.4s ease;
+}
+
+.ultra-modal.show .ultra-card-content {
+    transform: scale(1);
+}
+
+.ultra-phrase {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.6;
+}
+
+.ultra-close-hint {
+    margin-top: 15px;
+    font-size: 0.75rem;
+    color: #bbb;
+}
+</style>
 </head>
+
 <body>
 
-    <div class="carta">
-        <h1>¡Feliz Cumpleaños, Paula! 🌸</h1>
-        
-        <p>Querida Paula,</p>
-        <p>Hoy es un día muy especial y quería dedicarte estas palabras...</p>
-        <p><em>(Aquí escribe lo que quieras decirle)</em></p>
-        <p>Con todo mi cariño.</p>
-        
-        <audio id="musica" src="musica.mp3"></audio>
-        
-        <br>
-        <button onclick="document.getElementById('musica').play()">
-            Dale click para escuchar tu sorpresa 🎶
-        </button>
+<audio id="bgMusic" src="musica.mp3" loop></audio>
+
+<div id="flowers"></div>
+
+<div class="container" id="intro">
+    <h1 class="title">Para Paula 🌸</h1>
+    <div class="envelope" id="env" onclick="openLetter()">
+        <div class="base"></div>
+        <div class="flap"></div>
     </div>
+    <div class="note">Tienes un mensaje...</div>
+</div>
+
+<div class="card" id="card">
+    <h2 style="color:#e07a9b; margin-bottom:15px; text-align: center; line-height: 1.4;">
+        <span style="display: block; font-size: 2.2rem; margin-bottom: 5px;">🌸</span>
+        Feliz cumpleaños, Paula
+    </h2>
+    
+    <div id="message" class="typewriter"></div>
+
+    <div class="memory" id="memory">
+        💖 Aunque no lo parezca y a veces me cueste demostrarlo, siempre te tengo presente y nunca me olvido de ti. Te mando un abrazo desde la distancia. 💖
+        <br><br>
+        <p style="font-weight: bold; color: #e07a9b;">P.D. La lluvia guarda un secreto más profundo... 🌧️✨</p>
+    </div>
+
+    <p class="quote">"Hay personas que, sin importar los kilómetros, siempre se quedan grabadas en los pensamientos."</p>
+
+    <div class="actions">
+        <button onclick="showMemory()">Mensaje secreto ✨</button>
+        <button onclick="replay()">Releer 📝</button>
+    </div>
+
+    <p class="pd">♫ This is a night you'll never forget ♫</p>
+</div>
+
+<div class="counter">🌸 Para Paula</div>
+
+<div id="ultraModal" class="ultra-modal" onclick="closeUltraSecret()">
+    <div class="ultra-card-content" onclick="event.stopPropagation()">
+        <p id="ultraPhrase" class="ultra-phrase"></p>
+        <p class="ultra-close-hint">(Toca para cerrar)</p>
+    </div>
+</div>
+
+<script>
+const text = `Espero que hoy sea un día de esos que vale la pena recordar y que esté lleno de buenos momentos.
+
+Me habría gustado poder acompañarte, saludarte en persona y compartir un rato contigo, pero esta vez me toca celebrarlo desde la distancia.
+
+Aun así, quería que supieras que te tengo mucho cariño y que me alegra poder celebrar un año más de tu vida, aunque sea desde aquí.
+
+Disfruta mucho tu día, sonríe bastante y guarda buenos recuerdos de este cumpleaños.
+
+Feliz cumpleaños. 🌸`;
+
+const secretPhrases = [
+    "Haces que los días normales sean un poquito mejores. ✨",
+    "Me alegra muchísimo haber coincidido contigo en esta vida. 🌸",
+    "Siempre logras sacarme una sonrisa, incluso sin intentarlo. 😊",
+    "Ojalá pudiera darte ese abrazo de cumpleaños en persona hoy. 🫂",
+    "Tu risa es, sin duda, uno de mis sonidos favoritos. 🎵",
+    "Tengo la teoría de que todo es más divertido cuando estás tú. 🌟",
+    "Espero seguir celebrando tu vida por muchísimos años más. 🥂"
+];
+
+let canUnlockSecrets = false;
+
+function openLetter(){
+    const audio = document.getElementById("bgMusic");
+    if(audio) {
+        audio.play().catch(err => console.log("Error al reproducir audio:", err));
+    }
+
+    document.getElementById("env").classList.add("open");
+    setTimeout(()=>{
+        document.getElementById("intro").classList.add("fade-out");
+    },1000);
+    setTimeout(()=>{
+        document.getElementById("card").classList.add("show");
+        typeText();
+    },2200);
+}
+
+function typeText(){
+    const el = document.getElementById("message");
+    el.innerHTML = "";
+    let i = 0;
+    const timer = setInterval(()=>{
+        el.innerHTML += text.charAt(i);
+        i++;
+        if(i >= text.length){
+            clearInterval(timer);
+        }
+    },25);
+}
+
+function replay(){ typeText(); }
+
+function showMemory(){
+    document.getElementById("memory").style.display = "block";
+    canUnlockSecrets = true;
+}
+
+function catchFlower() {
+    if (!canUnlockSecrets) return;
+
+    const modal = document.getElementById("ultraModal");
+    const phraseElement = document.getElementById("ultraPhrase");
+    const randomPhrase = secretPhrases[Math.floor(Math.random() * secretPhrases.length)];
+    phraseElement.innerText = randomPhrase;
+    modal.classList.add("show");
+}
+
+function closeUltraSecret() {
+    document.getElementById("ultraModal").classList.remove("show");
+}
+
+const flowers = document.getElementById("flowers");
+const emojis = ["🌸","🌷","🌺","🌹"];
+
+for(let i=0;i<40;i++){
+    const flower = document.createElement("div");
+    flower.classList.add("flower");
+    flower.innerHTML = emojis[Math.floor(Math.random()*emojis.length)];
+    flower.style.left = Math.random()*100 + "vw";
+    flower.style.fontSize = (26 + Math.random()*16) + "px";
+    flower.style.animationDuration = (7 + Math.random()*9) + "s";
+    
+    flower.onclick = function(e) {
+        e.stopPropagation();
+        catchFlower();
+    };
+    flowers.appendChild(flower);
+}
+</script>
 
 </body>
 </html>
